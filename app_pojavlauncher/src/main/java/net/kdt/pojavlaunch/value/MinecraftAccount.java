@@ -30,6 +30,10 @@ public class MinecraftAccount {
     public String xuid;
     public long expiresAt;
     public String skinFaceBase64;
+    /** API root of a third party Yggdrasil server (LittleSkin, Ely.by, ...), null for official accounts */
+    public String yggdrasilUrl;
+    /** Base64 encoded API metadata, passed to authlib-injector as yggdrasil.prefetched */
+    public String yggdrasilPrefetched;
     private Bitmap mFaceCache;
     
     void updateSkinFace(String uuid) {
@@ -49,11 +53,18 @@ public class MinecraftAccount {
         return accessToken.equals("0") && !username.startsWith("Demo.");
     }
 
+    /** @return whether this account logs in through a third party Yggdrasil (authlib-injector) server */
+    public boolean isExternal(){
+        return yggdrasilUrl != null && !yggdrasilUrl.isEmpty();
+    }
+
     public boolean isDemo(){
         return username.startsWith("Demo.");
     }
     
     public void updateSkinFace() {
+        // Third party profiles do not exist on mc-heads.net, authlib-injector handles their skins in game
+        if (isExternal()) return;
         updateSkinFace(profileId);
     }
     

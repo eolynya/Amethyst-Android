@@ -490,6 +490,22 @@ public final class Tools {
         }
         javaArgList.add("-Djava.library.path="+javaLibraryPath);
 
+        // Third party (Yggdrasil / authlib-injector) accounts: the agent must be on the command line
+        if (minecraftAccount.isExternal()) {
+            File injectorJar = new File(Tools.DIR_DATA, "authlib-injector.jar");
+            if (!injectorJar.exists() || injectorJar.length() == 0) {
+                try {
+                    copyAssetFile(activity, "authlib-injector.jar", Tools.DIR_DATA, true);
+                } catch (IOException e) {
+                    Log.e("Launch", "Failed to extract authlib-injector.jar", e);
+                }
+            }
+            javaArgList.add("-javaagent:" + injectorJar.getAbsolutePath() + "=" + minecraftAccount.yggdrasilUrl);
+            if (isValidString(minecraftAccount.yggdrasilPrefetched)) {
+                javaArgList.add("-Dauthlibinjector.yggdrasil.prefetched=" + minecraftAccount.yggdrasilPrefetched);
+            }
+            Log.i("Launch", "authlib-injector enabled, api root: " + minecraftAccount.yggdrasilUrl);
+        }
         javaArgList.addAll(Arrays.asList(getMinecraftJVMArgs(versionId, gamedir)));
         javaArgList.add("-cp"); javaArgList.add(launchClasspath);
 
@@ -811,7 +827,9 @@ public final class Tools {
             // Minecraft 22w43a which adds chat reporting (and signing) was released on
             // 26th October 2022. So, if the date is not before that (meaning it is equal or higher)
             // change the userType to MSA to fix the missing signature
-            if(creationDate != null && !DateUtils.dateBefore(creationDate, 2022, 9, 26)) {
+            // Third party accounts must stay on the legacy ("mojang") auth path, otherwise the
+            // client tries to reach Microsoft and the login fails before authlib-injector kicks in
+            if(!profile.isExternal() && creationDate != null && !DateUtils.dateBefore(creationDate, 2022, 9, 26)) {
                 userType = "msa";
             }
         }catch (ParseException e) {

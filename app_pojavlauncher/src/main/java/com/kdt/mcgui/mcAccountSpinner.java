@@ -94,10 +94,15 @@ public class mcAccountSpinner extends AppCompatSpinner implements AdapterView.On
     private final DoneListener mDoneListener = account -> {
         Toast.makeText(getContext(), R.string.main_login_done, Toast.LENGTH_SHORT).show();
 
-        // Check if the account being added is not one that is already existing
-        // Like login twice on the same mc account...
+        // Re-logging into an existing account (token refresh, third party re-auth) must refresh
+        // the entry instead of silently bailing out
         for(String mcAccountName : mAccountList){
-            if(mcAccountName.equals(account.username)) return;
+            if(mcAccountName.equals(account.username)) {
+                mSelectecAccount = account;
+                invalidate();
+                reloadAccounts(false, mAccountList.indexOf(mcAccountName));
+                return;
+            }
         }
 
         mSelectecAccount = account;
@@ -148,6 +153,13 @@ public class mcAccountSpinner extends AppCompatSpinner implements AdapterView.On
     };
 
 
+    /* Triggered when a third party (Yggdrasil / authlib-injector) account was added */
+    private final ExtraListener<String> mExternalLoginListener = (key, value) -> {
+        MinecraftAccount account = MinecraftAccount.load(value);
+        if(account != null) mDoneListener.onLoginDone(account);
+        return false;
+    };
+
     @SuppressLint("ClickableViewAccessibility")
     private void init(){
         // Set visual properties
@@ -161,6 +173,7 @@ public class mcAccountSpinner extends AppCompatSpinner implements AdapterView.On
 
         ExtraCore.addExtraListener(ExtraConstants.MOJANG_LOGIN_TODO, mMojangLoginListener);
         ExtraCore.addExtraListener(ExtraConstants.MICROSOFT_LOGIN_TODO, mMicrosoftLoginListener);
+        ExtraCore.addExtraListener(ExtraConstants.EXTERNAL_LOGIN_TODO, mExternalLoginListener);
     }
 
 

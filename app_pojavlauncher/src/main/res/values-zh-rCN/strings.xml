@@ -435,4 +435,15 @@
     <string name="oldL4JFound">你正在使用的 Legacy4J 版本未包含 Android 修复！你需要在手柄设置中手动启用 SDL 才能获得最佳体验！</string>
     <string name="global_warning">警告！</string>
     <string name="controllableFound">Controllable 目前启动时有概率随机崩溃。你可以继续尝试并等待其成功启动，或者使用其他模组，例如 Controlify。</string>
+    <string name="ext_login_button_title">外置账户</string>
+    <string name="ext_login_server_hint">验证服务器（API 根地址）</string>
+    <string name="ext_login_username_hint">邮箱或用户名</string>
+    <string name="ext_login_password_hint">密码</string>
+    <string name="ext_login_button">登录</string>
+    <string name="ext_login_note">适用于 LittleSkin、Ely.by 等 authlib-injector 服务器。若目标服务器开启正版验证，服务端也需要安装 authlib-injector。</string>
+    <string name="ext_login_missing_title">信息不完整</string>
+    <string name="ext_login_missing_text">服务器地址、用户名和密码都必须填写。</string>
+    <string name="ext_login_failed_title">登录失败</string>
+    <string name="ext_login_failed_generic">服务器返回了 HTTP %d。</string>
+    <string name="ext_login_done">账户已添加</string>
 </resources>

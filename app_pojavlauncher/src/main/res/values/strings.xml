@@ -517,4 +517,15 @@
     <string name="angelica_found_sfpew_notice">Angelica mod found, Simple FPE Wrapper not needed</string>
     <string name="use_angle_checkbox">Use ANGLE (might help FPS)</string>
 
+    <string name="ext_login_button_title">External account</string>
+    <string name="ext_login_server_hint">Authentication server (API root)</string>
+    <string name="ext_login_username_hint">Email or username</string>
+    <string name="ext_login_password_hint">Password</string>
+    <string name="ext_login_button">Log in</string>
+    <string name="ext_login_note">For LittleSkin, Ely.by and other authlib-injector servers. The game server must run authlib-injector too when online-mode is enabled.</string>
+    <string name="ext_login_missing_title">Missing information</string>
+    <string name="ext_login_missing_text">Server address, username and password must all be filled in.</string>
+    <string name="ext_login_failed_title">Login failed</string>
+    <string name="ext_login_failed_generic">The server returned HTTP %d.</string>
+    <string name="ext_login_done">Account added</string>
 </resources>

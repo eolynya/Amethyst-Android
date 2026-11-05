@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/fragment_padding_medium"
+        android:paddingVertical="@dimen/padding_heavy">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:paddingTop="@dimen/_20sdp"
+            android:text="@string/ext_login_server_hint"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.kdt.mcgui.MineEditText
+            android:id="@+id/ext_login_server"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textUri"
+            android:textSize="@dimen/_14ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:text="@string/ext_login_username_hint"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.kdt.mcgui.MineEditText
+            android:id="@+id/ext_login_username"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/_14ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:text="@string/ext_login_password_hint"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.kdt.mcgui.MineEditText
+            android:id="@+id/ext_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textPassword"
+            android:textSize="@dimen/_14ssp" />
+
+        <com.kdt.mcgui.MineButton
+            android:id="@+id/ext_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/padding_heavy"
+            android:text="@string/ext_login_button"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:text="@string/ext_login_note"
+            android:textSize="@dimen/_11ssp" />
+    </LinearLayout>
+</ScrollView>
